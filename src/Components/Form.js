@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 
 class Form extends Component {
   constructor(props){
@@ -6,7 +7,7 @@ class Form extends Component {
     this.state = {
       name: ''
       ,price: 0
-      ,imgurl:''
+      ,img:''
     }
   }
 
@@ -20,14 +21,22 @@ class Form extends Component {
   }
 
   postProduct = () => {
-    //TODO post product
+    const body = this.state
+    axios.post('http://localhost:4420/api/product', body)
+      .then( (res) => {
+        console.log(res.data)
+        this.props.getFn()
+      })
+      .catch( err => console.log(err) )
+      
+      this.clearInputs()
   }
 
   clearInputs = () => {
     this.setState({
       name: ''
       ,price: 0
-      ,imgurl: ''
+      ,img: ''
     })
   }
 
@@ -45,7 +54,7 @@ class Form extends Component {
         </div>
         <div className="input-fields">
           <h3>Image URL:</h3>
-          <input name="imgurl" onChange={this.handleChange} value={this.state.imgurl}/>
+          <input name="img" onChange={this.handleChange} value={this.state.img}/>
           <h3>Product Name:</h3>
           <input name="name" onChange={this.handleChange} value={this.state.name}/>
           <h3>Price:</h3>

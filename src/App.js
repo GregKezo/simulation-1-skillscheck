@@ -14,19 +14,21 @@ class App extends React.Component {
     this.state = {
       inventory: []
     }
+    this.getProducts = this.getProducts.bind(this)
   }
 
-
+  getProducts() {
+    axios.get('http://localhost:4420/api/inventory')
+    .then( res => {
+      this.setState({
+        inventory: res.data
+      })
+    })
+    .catch( err => console.log(err))
+  }
 
   componentDidMount(){
-    axios.get('http://localhost:4420/api/inventory')
-      .then( res => {
-        console.log(res)
-        this.setState({
-          inventory: res.data
-        })
-      })
-      .catch( err => console.log(err))
+    this.getProducts()
 
   }
 
@@ -36,7 +38,7 @@ class App extends React.Component {
       <Header />
       <div className="body">
         <Dashboard inventory={this.state.inventory} />
-        <Form />
+        <Form getFn={this.getProducts}/>
       </div>
     </div>
   );

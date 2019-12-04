@@ -13,11 +13,13 @@ module.exports ={
 
   addProduct: (req, res, next) => {
     const db = req.app.get('db')
-    const { name, price, imgurl } = req.body
+    const { name, price, img } = req.body
+
+    db.create_product([ name, price, img ])
+      .then( () => res.sendStatus(200) )
+      .catch( err => res.send(500).send(err) )
 
     //TODO make sql statement. then write the function
-
-
   },
 
   editProduct: (req, res, next) => {
