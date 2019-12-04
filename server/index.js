@@ -17,7 +17,7 @@ const { SERVER_PORT, CONNECTION_STRING } = process.env
 
 massive(CONNECTION_STRING)
   .then(db => {
-    console.log(`db live`)
+    console.log(gs.summer(`db is running now, so go ahead and refresh that home page`))
     app.set('db', db)
   })
   .catch( err => console.log(err))
