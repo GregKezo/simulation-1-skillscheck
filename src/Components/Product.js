@@ -8,6 +8,10 @@ const Product = (props) => {
       <div className="description">
         <h2 className="prod-name">{props.name}</h2>
         <h3 className="prod-price">${props.price}</h3>
+        <div className="button-area">
+          <button id={props.id} onClick={props.deleteFn}>Delete</button>
+          <button>Edit</button>
+        </div>
       </div>
     </div>
   )

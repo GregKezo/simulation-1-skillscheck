@@ -12,7 +12,8 @@ class App extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      inventory: []
+      inventory: [],
+      editing: false
     }
     this.getProducts = this.getProducts.bind(this)
   }
@@ -37,8 +38,8 @@ class App extends React.Component {
     <div className="App">
       <Header />
       <div className="body">
-        <Dashboard inventory={this.state.inventory} />
-        <Form getFn={this.getProducts}/>
+        <Dashboard inventory={this.state.inventory} getFn={this.getProducts}/>
+        <Form getFn={this.getProducts} editing={this.state.editing} />
       </div>
     </div>
   );

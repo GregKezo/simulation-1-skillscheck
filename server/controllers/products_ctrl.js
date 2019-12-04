@@ -7,7 +7,6 @@ module.exports ={
     db.read_products()
       .then( product => res.status(200).send( product ) )
       .catch( err => res.status(500).send( err ) )
-
   },
 
 
@@ -18,8 +17,6 @@ module.exports ={
     db.create_product([ name, price, img ])
       .then( () => res.sendStatus(200) )
       .catch( err => res.send(500).send(err) )
-
-    //TODO make sql statement. then write the function
   },
 
   editProduct: (req, res, next) => {
@@ -35,8 +32,9 @@ module.exports ={
     const db = req.app.get('db')
     const { id } = req.params
 
-    //todo sql. functionality.
-
+    db.delete_product([ id ])
+      .then( () => res.sendStatus(200) )
+      .catch( err => res.send(500).send(err) )
   }
 
 }

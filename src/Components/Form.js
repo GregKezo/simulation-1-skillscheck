@@ -32,6 +32,14 @@ class Form extends Component {
       this.clearInputs()
   }
 
+  putProduct = () => {
+    const body = this.state
+    
+
+
+
+  }
+
   clearInputs = () => {
     this.setState({
       name: ''
@@ -40,15 +48,11 @@ class Form extends Component {
     })
   }
 
-  // componentDidUpdate(prevState, prevProps) {
-  //   if (prevState !== this.state)
-  //   this.render()
-  // }
-
-
   render(){
+
     return(
-      <section className="form">
+      this.props.editing===false 
+      ? <section className="form">
         <div className="preview-img">
           <img src={this.state.imgurl} alt='product preview' />
         </div>
@@ -64,8 +68,24 @@ class Form extends Component {
           <button onClick={this.clearInputs}>Cancel</button>
           <button onClick={this.postProduct}>Add to Inventory</button>
         </div>
-
       </section>
+      :<section className="form">
+      <div className="preview-img">
+        <img src={this.state.imgurl} alt='product preview' />
+      </div>
+      <div className="input-fields">
+        <h3>Image URL:</h3>
+        <input name="img" onChange={this.handleChange} value={this.state.img}/>
+        <h3>Product Name:</h3>
+        <input name="name" onChange={this.handleChange} value={this.state.name}/>
+        <h3>Price:</h3>
+        <input name="price" onChange={this.handleChange} value={this.state.price} />
+      </div>
+      <div className="button-space">
+        <button onClick={this.clearInputs}>Cancel</button>
+        <button onClick={this.putProduct}>Save Changes</button>
+      </div>
+    </section>
     )
   }
 }
