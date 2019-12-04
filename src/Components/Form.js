@@ -41,7 +41,7 @@ class Form extends Component {
     const body = this.state
     axios.post('http://localhost:4420/api/product', body)
       .then( (res) => {
-        console.log(res.data)
+        // console.log(res.data)
         // this.props.getFn()
       })
       .catch( err => console.log(err) )
@@ -59,7 +59,8 @@ class Form extends Component {
     axios.put(`http://localhost:4420/api/inventory/${id}`, body)
       .then( res => {
         // console.log(res.data)
-        this.props.getFn()
+        // this.props.getFn()
+
       })
       .catch( err => console.log(err) )
 
@@ -73,7 +74,7 @@ class Form extends Component {
       ,img: ''
       ,id: null
     })
-    // this.props.editFn()
+    this.props.history.goBack()
   }
 
 
@@ -81,17 +82,17 @@ class Form extends Component {
     this.getProduct()
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(this.props.currentProduct && prevProps.currentProduct !== this.props.currentProduct) {
-      const {id, name, price, img } = this.props.currentProduct
-      this.setState({
-        id: id,
-        name: name,
-        price: price,
-        img: img
-      })
-    }
-  }
+  // componentDidUpdate(prevProps, prevState) {
+  //   if(this.props.currentProduct && prevProps.currentProduct !== this.props.currentProduct) {
+  //     const {id, name, price, img } = this.props.currentProduct
+  //     this.setState({
+  //       id: id,
+  //       name: name,
+  //       price: price,
+  //       img: img
+  //     })
+  //   }
+  // }
 
 
   render(){
@@ -135,7 +136,7 @@ class Form extends Component {
      <div className="button-space">
        <button onClick={this.clearInputs}>Cancel</button>
        <button onClick={this.postProduct}>
-         <Link to='/' >Add to Inventory</Link>
+         Add to Inventory
         </button>
      </div>
    </section>

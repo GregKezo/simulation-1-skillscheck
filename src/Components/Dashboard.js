@@ -60,7 +60,7 @@ class Dashboard extends React.Component {
   }
 
   // componentDidUpdate(prevState) {
-  //   // if( this.state !== prevState) this.render()
+  //   if( this.state !== prevState) this.render()
   // }
   
   render() {
