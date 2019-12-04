@@ -6,8 +6,7 @@ import Form from './Components/Form'
 import axios from 'axios'
 import routes from './routes'
 
-// axios.defaults.proxy.host = "http://localhost:4420"
-// axios.defaults.proxy.port = "4420"
+
 
 class App extends React.Component {
  
