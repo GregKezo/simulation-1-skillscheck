@@ -31,6 +31,7 @@ class Dashboard extends React.Component {
           name={name}
           price={price} 
           deleteFn={this.handleDelete}
+          editFn={this.props.editFn}
           />)
         })}
     </div>

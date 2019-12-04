@@ -13,7 +13,8 @@ class App extends React.Component {
     super(props)
     this.state = {
       inventory: [],
-      editing: false
+      editing: false,
+      currentProduct: []
     }
     this.getProducts = this.getProducts.bind(this)
   }
@@ -30,7 +31,22 @@ class App extends React.Component {
 
   componentDidMount(){
     this.getProducts()
+  }
 
+  toggleEdit = () => {
+    this.setState({
+      editing: false,
+      currentProduct: []
+    })
+  }
+
+  editProduct = (e) => {
+    let {id} = e.target
+    let curProd = this.state.inventory.filter( ele => ele.id === +id )
+    this.setState({
+      editing: true,
+      currentProduct: curProd
+    })
   }
 
   render() {
@@ -38,8 +54,17 @@ class App extends React.Component {
     <div className="App">
       <Header />
       <div className="body">
-        <Dashboard inventory={this.state.inventory} getFn={this.getProducts}/>
-        <Form getFn={this.getProducts} editing={this.state.editing} />
+        <Dashboard 
+        inventory={this.state.inventory} 
+        getFn={this.getProducts}
+        editFn={this.editProduct}
+        />
+        <Form 
+          getFn={this.getProducts} 
+          editing={this.state.editing} 
+          editFn={this.toggleEdit}
+          currentProduct={this.state.currentProduct[0]}
+        />
       </div>
     </div>
   );

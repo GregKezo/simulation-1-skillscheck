@@ -10,7 +10,7 @@ const Product = (props) => {
         <h3 className="prod-price">${props.price}</h3>
         <div className="button-area">
           <button id={props.id} onClick={props.deleteFn}>Delete</button>
-          <button>Edit</button>
+          <button id={props.id} onClick={props.editFn}>Edit</button>
         </div>
       </div>
     </div>

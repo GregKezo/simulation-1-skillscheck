@@ -8,6 +8,7 @@ class Form extends Component {
       name: ''
       ,price: 0
       ,img:''
+      ,id: null
     }
   }
 
@@ -32,12 +33,19 @@ class Form extends Component {
       this.clearInputs()
   }
 
-  putProduct = () => {
+  putProduct = (e) => {
     const body = this.state
+    const {id} = e.target
+    console.log(e.target.id)
     
+    axios.put(`http://localhost:4420/api/inventory/${id}`, body)
+      .then( res => {
+        console.log(res.data)
+        this.props.getFn()
+      })
+      .catch( err => console.log(err) )
 
-
-
+      this.clearInputs()
   }
 
   clearInputs = () => {
@@ -45,8 +53,24 @@ class Form extends Component {
       name: ''
       ,price: 0
       ,img: ''
+      ,id: null
     })
+    this.props.editFn()
   }
+
+
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.currentProduct && prevProps.currentProduct !== this.props.currentProduct) {
+      const {id, name, price, img } = this.props.currentProduct
+      this.setState({
+        id: id,
+        name: name,
+        price: price,
+        img: img
+      })
+    }
+  }
+
 
   render(){
 
@@ -54,7 +78,7 @@ class Form extends Component {
       this.props.editing===false 
       ? <section className="form">
         <div className="preview-img">
-          <img src={this.state.imgurl} alt='product preview' />
+          <img src={this.state.img} alt='product preview' />
         </div>
         <div className="input-fields">
           <h3>Image URL:</h3>
@@ -71,7 +95,7 @@ class Form extends Component {
       </section>
       :<section className="form">
       <div className="preview-img">
-        <img src={this.state.imgurl} alt='product preview' />
+        <img src={this.state.img} alt='product preview' />
       </div>
       <div className="input-fields">
         <h3>Image URL:</h3>
@@ -79,11 +103,11 @@ class Form extends Component {
         <h3>Product Name:</h3>
         <input name="name" onChange={this.handleChange} value={this.state.name}/>
         <h3>Price:</h3>
-        <input name="price" onChange={this.handleChange} value={this.state.price} />
+        <input name="price" onChange={this.handleChange} value={+this.state.price} />
       </div>
       <div className="button-space">
         <button onClick={this.clearInputs}>Cancel</button>
-        <button onClick={this.putProduct}>Save Changes</button>
+        <button id={this.state.id} onClick={this.putProduct}>Save Changes</button>
       </div>
     </section>
     )

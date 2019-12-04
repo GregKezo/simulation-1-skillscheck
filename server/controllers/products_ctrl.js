@@ -21,8 +21,12 @@ module.exports ={
 
   editProduct: (req, res, next) => {
     const db = req.app.get('db')
-    const { name, price, imgurl } = req.body
+    const { name, price, img } = req.body
     const  { id } = req.params
+
+    db.update_product([ id, name, price, img ])
+      .then( () => res.sendStatus(200) )
+      .catch( err => res.send(500).send(err) )
 
     //todo sql. functionality.
 
