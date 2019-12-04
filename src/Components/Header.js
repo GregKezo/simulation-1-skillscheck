@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 
 const Header = (props) => {
   return(
@@ -9,6 +9,10 @@ const Header = (props) => {
         
       </div>
       <h1 className="app-name">SHELFIE</h1>
+      <div className="links-area">
+        <Link to='/' className="links">Dashboard</Link>
+        <Link to='/add' className="links">Add Inventory</Link>
+      </div>
     </header>
   )
 }

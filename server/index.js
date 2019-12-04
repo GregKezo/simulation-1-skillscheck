@@ -23,6 +23,7 @@ massive(CONNECTION_STRING)
   .catch( err => console.log(err))
 
 app.get('/api/inventory', ctrl.getAllProducts)
+app.get('/api/inventory/:id', ctrl.getProduct)
 app.post('/api/product', ctrl.addProduct)
 app.put('/api/inventory/:id', ctrl.editProduct)
 app.delete('/api/inventory/:id', ctrl.deleteProduct)

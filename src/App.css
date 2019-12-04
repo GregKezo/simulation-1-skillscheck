@@ -32,12 +32,13 @@
   margin-top: 150px;
   display: flex;
   width: 100vw;
+  justify-content: center;
 }
 
 
 .form {
   position: fixed;
-  left: 57vw;
+  
   top: 150px;
   width: 450px;
   height: 520px;

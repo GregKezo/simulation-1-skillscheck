@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 const Product = (props) => {
@@ -10,7 +11,7 @@ const Product = (props) => {
         <h3 className="prod-price">${props.price}</h3>
         <div className="button-area">
           <button id={props.id} onClick={props.deleteFn}>Delete</button>
-          <button id={props.id} onClick={props.editFn}>Edit</button>
+          <Link to={`/edit/${props.id}`} ><button id={props.id} onClick={props.editFn}>Edit</button></Link>
         </div>
       </div>
     </div>
