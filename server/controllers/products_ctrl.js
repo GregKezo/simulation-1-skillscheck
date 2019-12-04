@@ -12,9 +12,29 @@ module.exports ={
 
 
   addProduct: (req, res, next) => {
+    const db = req.app.get('db')
+    const { name, price, imgurl } = req.body
+
+    //TODO make sql statement. then write the function
+
+
+  },
+
+  editProduct: (req, res, next) => {
+    const db = req.app.get('db')
+    const { name, price, imgurl } = req.body
+    const  { id } = req.params
+
+    //todo sql. functionality.
+
+  },
+
+  deleteProduct: (req, res, next) => {
+    const db = req.app.get('db')
+    const { id } = req.params
+
+    //todo sql. functionality.
 
   }
-
-
 
 }

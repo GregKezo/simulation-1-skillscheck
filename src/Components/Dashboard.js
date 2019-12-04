@@ -2,9 +2,10 @@ import React from 'react'
 import Product from './Product'
 
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  
   return(
-    <div>Dashboard component.
+    <div className="dash">Dashboard component.
       <Product />
     </div>
 
